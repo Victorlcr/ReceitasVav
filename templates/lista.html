@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Receita</th>
+            <th>Modo de Preparo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for receita in receitas %}        
+            <tr>
+                <td>{{receita.idReceita}}</td>
+                <td>{{receita.nomeReceita}}</td>
+                <td>{{receita.preparo}}</td>
+                <td>
+                    <a href="/editar/{{receita.idReceita}}">Editar</a> | 
+                    <a href="/deletar/{{receita.idReceita}}">Excluir</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock conteudo %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<form action="{{url_for('adicionar')}}" method="POST" class="form-control">
+    <div>
+        <label for="nomeReceita">Receita:</label>
+        <input type="text" class="form-control" name="nomeReceita" required>
+    </div>
+    <div>
+        <label for="preparo">Preparo:</label>
+        <input type="text" class="form-control" name="preparo" required>
+    </div>
+    <button type="submit">Cadastrar</button>
+</form>
+
+{% endblock conteudo %}
