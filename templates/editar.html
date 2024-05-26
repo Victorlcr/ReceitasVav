@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
+<h1>Editar: {{receita.nomeReceita}}</h1>
 <form action="/editar/{{receita.idReceita}}" method="POST" class="form-control">
-    <h1>Editar: {{receita.nomeReceita}}</h1>
     <div>
         <label for="nomeReceita">Receita:</label>
         <input type="text" class="form-control" name="nomeReceita" value="{{receita.nomeReceita}}" required>
+    </div>
+    <div>
+        <label for="nomeIngrediente">Ingredientes:</label>
+        <input type="text" class="form-control" name="nomeIngrediente" value="{{ingrediente.nomeIngrediente}}" required>
     </div>
     <div>
         <label for="preparo">Preparo:</label>
