@@ -30,11 +30,11 @@ class receitas(db.Model):
 
 
 # CONSULTAS ---------------------------------------------------------------------------------------#
-# join tbIngrediente to tbReceitas, where = all
-def getReceitasIngredientes():
-  receitasComIngredientes = receitas.query.all()
+# busca todas receitas no db
+def getTodasReceitas():
+  todasReceitas = receitas.query.all()
 
-  return receitasComIngredientes
+  return todasReceitas
 #---------------------------------------------------------------------------------------------------#
 
 
@@ -49,9 +49,9 @@ def index():
 # pag. de exibiçao das receitas e ingredientes
 @app.route('/lista')
 def lista():
-  receitasComIngredientes = getReceitasIngredientes()
+  todasReceitas = getTodasReceitas()
 
-  return render_template('lista.html', receitas = receitasComIngredientes)
+  return render_template('lista.html', receitas = todasReceitas)
 
 # form. de adiçao de novas receitas
 @app.route('/adicionar', methods=['GET', 'POST'])
