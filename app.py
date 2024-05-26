@@ -30,11 +30,17 @@ class receitas(db.Model):
 
 
 # CONSULTAS ---------------------------------------------------------------------------------------#
-# busca todas receitas no db
+# busca todas receitas existentes
 def getTodasReceitas():
   todasReceitas = receitas.query.all()
 
   return todasReceitas
+
+# busca todos ingredientes existentes
+def getTodosIngredientes():
+  todosIngredientes = ingredientes.query.all()
+
+  return todosIngredientes
 #---------------------------------------------------------------------------------------------------#
 
 
@@ -50,19 +56,23 @@ def index():
 @app.route('/lista')
 def lista():
   todasReceitas = getTodasReceitas()
+  todosIngredientes = getTodosIngredientes()
 
-  return render_template('lista.html', receitas = todasReceitas)
+  return render_template('lista.html', receitas = todasReceitas, ingredientes = todosIngredientes)
 
 # form. de adiçao de novas receitas
 @app.route('/adicionar', methods=['GET', 'POST'])
 def adicionar():
   nomeReceita = request.form.get('nomeReceita')
   preparo = request.form.get('preparo')
+  nomeIngrediente = request.form.get('nomeIngrediente')
 
   if request.method == 'POST':
     receita = receitas(nomeReceita, preparo)
+    ingrediente = ingredientes(nomeIngrediente)
 
     db.session.add(receita)
+    db.session.add(ingrediente)
     db.session.commit()
 
     return redirect(url_for('lista'))
