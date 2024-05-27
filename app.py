@@ -2,7 +2,7 @@
 from flask import Flask
 from flask import render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, func
 from sqlalchemy.orm import relationship
 
 # difiniçao da aplicaçao e banco de dados
@@ -44,20 +44,22 @@ def getTodasReceitas():
 
   return todasReceitas
 
+
 # busca todos ingredientes existentes
 def getTodosIngredientes():
   todosIngredientes = ingredientes.query.all()
 
   return todosIngredientes
 
+
 # busca todas receitas e seus respectivos ingredientes
 def getTodasReceitasComIngredientes():
-    consulta = receitas.query.select_from(receitas)
-    consulta = receitas.query.join(ingredientes)
-    consulta = consulta.with_entities(receitas.idReceita, receitas.nomeReceita, receitas.preparo,
-                                     ingredientes.idIngrediente, ingredientes.nomeIngrediente)
+    consulta = db.session.query(receitas.idReceita, receitas.nomeReceita, receitas.preparo,
+      func.group_concat(ingredientes.nomeIngrediente)).\
+    join(ingredientes).group_by(receitas.idReceita).all()
 
-    return consulta.all()
+    return consulta
+
 
 # busca uma receita utilizando seu id como parametro
 def getReceitaComIngredientesPorId(idReceita):
@@ -65,7 +67,7 @@ def getReceitaComIngredientesPorId(idReceita):
   consulta = consulta.join(ingredientes)
   consulta = consulta.filter(receitas.idReceita == idReceita)
   consulta = consulta.with_entities(receitas.idReceita, receitas.nomeReceita, receitas.preparo,
-                                   ingredientes.idIngrediente, ingredientes.nomeIngrediente)
+    ingredientes.idIngrediente, ingredientes.nomeIngrediente)
 
   return consulta.all()
 #---------------------------------------------------------------------------------------------------#
@@ -92,7 +94,7 @@ def lista():
 def adicionar():
   nomeReceita = request.form.get('nomeReceita')
   preparo = request.form.get('preparo')
-  nomeIngrediente = request.form.get('nomeIngrediente')
+  listaIngredientes = request.form.getlist('ingredientes[]')
 
   if request.method == 'POST':
     receita = receitas(nomeReceita, preparo)
@@ -100,10 +102,9 @@ def adicionar():
     db.session.add(receita)
     db.session.commit()
 
-    idReceita = receita.idReceita
-
-    db.session.add(ingredientes(nomeIngrediente, idReceita))
-    db.session.commit()
+    for ingrediente in listaIngredientes:
+      db.session.add(ingredientes(ingrediente, receita.idReceita))
+      db.session.commit()
 
     return redirect(url_for('lista'))
   
