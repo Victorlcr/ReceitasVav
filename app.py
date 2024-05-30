@@ -15,6 +15,7 @@ db = SQLAlchemy(app)
 # tbIngredientes
 class ingredientes(db.Model):
   idIngrediente = db.Column(db.Integer, primary_key=True, autoincrement=True)
+  #quantidade = db.Column(db.String(30))
   nomeIngrediente = db.Column(db.String(30))
   idReceita = Column(db.Integer, ForeignKey('receitas.idReceita'), nullable=False)
   nomeReceita = relationship('receitas', backref='receitas.idReceita', foreign_keys=[idReceita])
@@ -63,13 +64,22 @@ def getTodasReceitasComIngredientes():
 
 # busca uma receita utilizando seu id como parametro
 def getReceitaComIngredientesPorId(idReceita):
-  consulta = receitas.query.select_from(receitas)
-  consulta = consulta.join(ingredientes)
-  consulta = consulta.filter(receitas.idReceita == idReceita)
-  consulta = consulta.with_entities(receitas.idReceita, receitas.nomeReceita, receitas.preparo,
-    ingredientes.idIngrediente, ingredientes.nomeIngrediente)
+    consulta = db.session.query(receitas, ingredientes.nomeIngrediente).\
+        join(ingredientes).\
+        filter(receitas.idReceita == idReceita).\
+        all()
+    
+    # Agrupa os ingredientes para cada receita
+    receitas_com_ingredientes = {}
+    for receita, ingrediente in consulta:
+        if receita.idReceita not in receitas_com_ingredientes:
+            receitas_com_ingredientes[receita.idReceita] = {
+                'receita': receita,
+                'ingredientes': []
+            }
+        receitas_com_ingredientes[receita.idReceita]['ingredientes'].append(ingrediente)
 
-  return consulta.all()
+    return list(receitas_com_ingredientes.values())
 #---------------------------------------------------------------------------------------------------#
 
 
@@ -79,6 +89,13 @@ def getReceitaComIngredientesPorId(idReceita):
 @app.route('/')
 def index():
   return render_template('index.html')
+
+
+# receitabase
+@app.route('/receita/<int:idReceita>', methods=['GET', 'POST'])
+def receita(idReceita):
+  receitasComIngredientes = getReceitaComIngredientesPorId(idReceita)
+  return render_template('receita.html', receitasComIngredientes = receitasComIngredientes)
 
 
 # pag. de exibiçao das receitas e ingredientes

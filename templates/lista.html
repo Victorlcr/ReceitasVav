@@ -14,7 +14,7 @@
         {% for receita in receitas %}        
             <tr>
                 <td>{{receita.idReceita}}</td>
-                <td>{{receita.nomeReceita}}</td>
+                <td><a href="/receita/{{receita.idReceita}}">{{receita.nomeReceita}}</a></td>
                 <td>{{receita[3]}}</td>
                 <td>{{receita.preparo}}</td>
                 <td>

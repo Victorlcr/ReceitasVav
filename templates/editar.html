@@ -9,8 +9,10 @@
     </div>
     <div>
         <label for="nomeIngrediente">Ingredientes:</label>
-        <input type="text" class="form-control" name="nomeIngrediente" value="{{ingrediente.nomeIngrediente}}" required>
-    </div>
+        {% for ingrediente in receita.ingredientes %}
+            <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" value="{{ ingrediente.nomeIngrediente }}" required></div>
+        {% endfor %}    
+        </div>
     <div>
         <label for="preparo">Preparo:</label>
         <input type="text" class="form-control" name="preparo" value="{{receita.preparo}}" required>
