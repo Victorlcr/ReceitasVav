@@ -1,27 +1,35 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-<form action="{{url_for('adicionar')}}" method="POST" class="form-control">
+<form style="background-color: #F2F2F2;" action="{{url_for('adicionar')}}" method="POST" class="form-control">
     <div>
         <label for="nomeReceita">Receita:</label>
         <input type="text" class="form-control" name="nomeReceita" required>
     </div>
     <div>
-        <label for="nomeIngrediente">Ingredientes:</label>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
-        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
+        <label for="tempo">Tempo de preparo:</label>
+        <input type="text" class="form-control" name="tempo" required>
     </div>
     <div>
-        <label for="preparo">Preparo:</label>
+        <label for="nomeIngrediente">Ingredientes:</label>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" required></div>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" ></div>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" ></div>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" ></div>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" ></div>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" ></div>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" ></div>
+        <div class="m-1"><input type="text" class="form-control" name="ingredientes[]" ></div>
+    </div>
+    <div>
+        <label for="preparo">Modo de fazer:</label>
         <textarea type="text" class="form-control" name="preparo" required></textarea>
     </div>
-    <button style="color: #03A63C;" type="submit">Cadastrar</button>
+    <div>
+        <label for="imagem">Imagem:</label>
+        <input type="text" class="form-control" name="imagem" required>
+    </div>
+    <button class="bg-green-500/50 hover:bg-green-600/50" type="submit">Cadastrar</button>
 </form>
 
 {% endblock conteudo %}

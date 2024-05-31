@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 
 # difiniçao da aplicaçao e banco de dados
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///project.sqlite3'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///db.sqlite3'
 db = SQLAlchemy(app)
 
 
@@ -29,11 +29,15 @@ class receitas(db.Model):
   idReceita = db.Column(db.Integer, primary_key=True, autoincrement=True)
   nomeReceita = db.Column(db.String(30))
   preparo = db.Column(db.String(760))
+  imagem = db.Column(db.String(120))
+  tempo = db.Column(db.Integer)
   ingredientes = relationship("ingredientes", backref="receita")
 
-  def __init__(self, nomeReceita, preparo):
+  def __init__(self, nomeReceita, preparo, imagem, tempo):
     self.nomeReceita = nomeReceita
     self.preparo = preparo
+    self.imagem = imagem
+    self.tempo = tempo
 #--------------------------------------------------------------------------------------------------#
 
 
@@ -69,7 +73,7 @@ def getReceitaComIngredientesPorId(idReceita):
         filter(receitas.idReceita == idReceita).\
         all()
     
-    # Agrupa os ingredientes para cada receita
+    # agrupa os ingredientes para a receita
     receitas_com_ingredientes = {}
     for receita, ingrediente in consulta:
         if receita.idReceita not in receitas_com_ingredientes:
@@ -111,10 +115,12 @@ def lista():
 def adicionar():
   nomeReceita = request.form.get('nomeReceita')
   preparo = request.form.get('preparo')
+  imagem = request.form.get('imagem')
+  tempo = request.form.get('tempo')
   listaIngredientes = request.form.getlist('ingredientes[]')
 
   if request.method == 'POST':
-    receita = receitas(nomeReceita, preparo)
+    receita = receitas(nomeReceita, preparo, imagem, tempo)
 
     db.session.add(receita)
     db.session.commit()

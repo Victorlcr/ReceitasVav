@@ -7,12 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>ReceitasVav</title>
 </head>
-<nav class="bg-gray-800">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+<nav style="background-color: #F2F2F2;" class="h-24">
+  <div class="mx-auto max-w-7xl px-10 sm:px-6 lg:px-10">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
-        <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+        <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-amber-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
           <span class="absolute -inset-0.5"></span>
           <!--
             Icon when menu is closed.
@@ -32,21 +32,21 @@
           </svg>
         </button>
       </div>
-      <div class="ms-5 flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex flex-shrink-0 items-center">
-          <img class="h-14 w-auto" src="https://cdn-icons-png.flaticon.com/512/6638/6638083.png" alt="ReceitasVav">
+          <img class="size-28 mt-6" src="https://cdn-icons-png.flaticon.com/512/6638/6638083.png" alt="ReceitasVav">
         </div>
-        <div class="hidden sm:ml-8 sm:block">
+        <div class="hidden sm:ml-10 sm:block mt-16">
           <div class="flex space-x-6">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="{{url_for('index')}}" class="bg-gray-900 text-white rounded-md px-4 py-3 text-sm font-medium" aria-current="page">Início</a>
-            <a href="{{url_for('adicionar')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-4 py-3 text-sm font-medium">Cadastrar</a>
-            <a href="{{url_for('lista')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-4 py-3 text-sm font-medium">Receitas</a>
+            <a href="{{url_for('index')}}" class="bg-amber-400 text-white rounded-md px-4 py-2 text-sm font-medium" aria-current="page">Início</a>
+            <a href="{{url_for('adicionar')}}" class="text-gray-300 hover:bg-amber-400 hover:text-white rounded-md px-4 py-2 text-sm font-medium">Cadastrar</a>
+            <a href="{{url_for('lista')}}" class="text-gray-300 hover:bg-amber-400 hover:text-white rounded-md px-4 py-2 text-sm font-medium">Receitas</a>
           </div>
         </div>
       </div>
-      <div class="me-4 absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <button type="button" class="relative rounded-full p-1 text-gray-500 hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <span class="absolute -inset-1.5"></span>
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -61,9 +61,9 @@
   <div class="sm:hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pb-3 pt-2">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <a href="{{url_for('index')}}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Início</a>
-      <a href="{{url_for('adicionar')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Cadastrar</a>
-      <a href="{{url_for('lista')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Receitas</a>
+      <a href="{{url_for('index')}}" class="bg-amber-400 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Início</a>
+      <a href="{{url_for('adicionar')}}" class="text-gray-300 hover:bg-amber-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Cadastrar</a>
+      <a href="{{url_for('lista')}}" class="text-gray-300 hover:bg-amber-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Receitas</a>
     </div>
   </div>
 </nav>
@@ -80,10 +80,10 @@
       <span class="mb-3 mb-md-0 text-muted">© 2024 Etecvav</span>
     </div>
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+    <ul class="nav justify-content-end list-unstyled d-flex">
       <li class="ms-3">
-        <a href="https://github.com/Victorlcr/receitas">
-          <svg class="bi, me-5" width="32" height="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+        <a target="_blank" href="https://github.com/Victorlcr/receitas">
+          <svg class="bi" width="32" height="42" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
           </svg>
         </a>
