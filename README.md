@@ -20,7 +20,7 @@ python app.py
 
 
 ## Estrutura do Projeto
-
+```
 └── receitasvav/
     ├── app.py
     ├── README.md
@@ -35,3 +35,4 @@ python app.py
     │   └── editar.html
     ├── static/
     │   └── ReceitasVav.png
+```
