@@ -21,18 +21,17 @@ python app.py
 
 ## Estrutura do Projeto
 
-receitasvav/
-│
-├── app.py
-├── README.md
-├── instance/
-│   └── db.sqlite3
-├── templates/
-│   ├── index.html
-│   ├── base.html
-│   ├── receita.html
-│   ├── lista.html
-│   ├── adicionar.html
-│   └── editar.html
-└── static/
-    └── ReceitasVav.png
+└── receitasvav/
+    ├── app.py
+    ├── README.md
+    ├── instance/
+    │   └── db.sqlite3
+    ├── templates/
+    │   └── index.html
+    │   └── base.html
+    │   └── receita.html
+    │   └── lista.html
+    │   └── adicionar.html
+    │   └── editar.html
+    ├── static/
+    │   └── ReceitasVav.png
