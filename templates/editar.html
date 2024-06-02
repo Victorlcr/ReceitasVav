@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-<h1>Editar: {{receita.nomeReceita}}</h1>
-<form action="/editar/{{receita.idReceita}}" method="POST" class="form-control">
+<form style="background-color: #F2F2F2;" action="/editar/{{receita.idReceita}}" method="POST" class="form-control">
+    <h1>Editar: {{receita.nomeReceita}}</h1>
     <div>
         <label for="nomeReceita">Receita:</label>
         <input type="text" class="form-control" name="nomeReceita" value="{{receita.nomeReceita}}" required>
@@ -15,7 +15,7 @@
         </div>
     <div>
         <label for="preparo">Preparo:</label>
-        <input type="text" class="form-control" name="preparo" value="{{receita.preparo}}" required>
+        <textarea type="text" class="form-control" name="preparo" rows="6" required>{{receita.preparo}}</textarea>
     </div>
     <button style="color: #03A63C;" type="submit">Editar</button>
 </form>
