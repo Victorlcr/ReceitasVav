@@ -59,7 +59,7 @@ def getTodosIngredientes():
 
 # busca todas receitas e seus respectivos ingredientes
 def getTodasReceitasComIngredientes():
-    consulta = db.session.query(receitas.idReceita, receitas.nomeReceita, receitas.preparo,
+    consulta = db.session.query(receitas.idReceita, receitas.nomeReceita, receitas.preparo, receitas.imagem,
       func.group_concat(ingredientes.nomeIngrediente)).\
     join(ingredientes).group_by(receitas.idReceita).all()
 

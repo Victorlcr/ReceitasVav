@@ -1,28 +1,36 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-<table>
+<table class="border-collapse border border-slate-500">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Receita</th>
-            <th>Ingredientes</th>
-            <th>Modo de Preparo</th>
+            <th class="text-xl">Imagem</th>
+            <th class="text-xl">Receita</th>
+            <th class="text-xl">Ingredientes</th>
+            <th class="text-xl">Modo de Preparo</th>
+            <th class="text-xl"></th>
         </tr>
     </thead>
-    <tbody>
-        {% for receita in receitas %}        
-            <tr>
-                <td>{{receita.idReceita}}</td>
-                <td><a href="/receita/{{receita.idReceita}}">{{receita.nomeReceita}}</a></td>
-                <td>{{receita[3]}}</td>
-                <td>{{receita.preparo}}</td>
-                <td>
-                    <a href="/editar/{{receita.idReceita}}">Editar</a> | 
-                    <a href="/deletar/{{receita.idReceita}}">Excluir</a>
+    <tbody class="divide-y divide-gray-100">
+    {% for receita in receitas %}
+        <tr>
+            <div class="flex min-w-0 gap-x-4">
+                <td class="size-32 ">
+                    <a href="/receita/{{receita.idReceita}}"><img class="size-32 flex-none rounded-3xl bg-gray-50" src="{{receita.imagem}}" alt=""></a>
                 </td>
-            </tr>
-        {% endfor %}
+                <div class="min-w-0 flex-auto">
+                    <td class=""><a href="/receita/{{receita.idReceita}}">{{receita.nomeReceita}}</a></td>
+                </div>
+            </div>
+            <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                <td class="">{{receita[4]}}</td>
+                <td class="text-pretty ">{{receita.preparo}}</td>
+                <td class="">
+                    <a href="/editar/{{receita.idReceita}}">Editar</a>
+                </td>
+            </div>
+        </tr>
+    {% endfor %}
     </tbody>
 </table>
 
