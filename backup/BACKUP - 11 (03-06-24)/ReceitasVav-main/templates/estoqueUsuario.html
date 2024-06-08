@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6">
+            <form action="/estoque_usuario" method="POST" id="ingredienteForm">
+                <div class="form-group">
+                    <label for="ingrediente">Ingrediente: </label>
+                    <input type="text" class="form-control bg-purple sem-borda" name="ingrediente" id="ingrediente" placeholder="Digite seu ingrediente">
+                    <script>
+                        $(function() {
+                            var availableTags = [
+                                {% for ingrediente in ingredientes_no_banco %}
+                                    "{{ ingrediente.nomeIngrediente }}",
+                                {% endfor %}
+                            ];
+                            $("#ingrediente").autocomplete({
+                                source: availableTags
+                            });
+                        });
+                    </script>
+                </div>
+                <br>
+                <button type="submit" name="btn" value="adicionar-ingrediente" class="bg-amber-400 text-white rounded-md px-4 py-3 text-sm font-medium">Adicionar</button>
+                {% if lista_ingredientes %}
+                <a href="{{ url_for('get_receitas_com_ingredientes')}}" class="bg-amber-400 text-white rounded-md px-4 py-3 text-sm font-medium">Prosseguir</a>
+                {% else %}  
+                {% endif %}
+        
+                    <div class="alert alert-danger" role="alert">
+                    {% for message in get_flashed_messages() %}
+                        {{ message }}
+                    {% endfor %}
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh; margin-top:0;">
+    <div class="card p-4 bg-purple">
+        <h2 class="mb-4 c-branco">INGREDIENTES:</h2>
+        <form action="{{ url_for('remover_ingrediente')}}" method="POST">
+            <ul class="list-group">
+                {% for ingrediente in lista_ingredientes %}
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-amber-400">
+                    <div class="form-check custom-checkbox">                
+                        <input class="form-check-input sem-borda" id ="checkbox-ingredientes-remover-{{ loop.index }}" type="checkbox" name="ingredientes-remover" value="{{ ingrediente }}">{{ ingrediente.capitalize() }}
+                        <label class="form-check-label bg-amber-400" for="checkbox-ingredientes-remover-{{ loop.index }}"></label>   
+                    </div>  
+                </li>
+                {% endfor %}
+            </ul>
+            <br>
+            {% if lista_ingredientes %}
+            <button type="submit" id="remover-ingrediente" class="bg-amber-400 text-white rounded-md px-4 py-3 text-sm font-medium">Remover selecionados</button>
+            {% else %}
+            <p>Nenhum ingrediente foi adicionado</p>
+            {% endif %}
+        </form>
+    </div>
+</div>
+</body>
+{% endblock conteudo %}
