@@ -24,6 +24,7 @@ python app.py
 └── receitasvav/
     ├── app.py
     ├── README.md
+    ├── LICENSE
     ├── instance/
     │   └── db.sqlite3
     ├── templates/
