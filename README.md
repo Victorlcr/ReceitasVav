@@ -37,3 +37,9 @@ python app.py
     ├── static/
     │   └── ReceitasVav.png
 ```
+
+## Conteúdos associados a elaboração do projeto
+
+[📄 Clique aqui para ver o Banner de apresentação](./static/Banner_ReceitasVav.pdf)
+
+[📄 Clique aqui para ver o Artigo Científico](./static/Banner_ReceitasVav.pdf)
